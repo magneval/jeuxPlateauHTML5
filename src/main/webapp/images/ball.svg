@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" viewBox="0 -10 100 160">
+<linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="white"/>
+    <stop offset="1" stop-color="black"/>
+    </linearGradient>
+<mask id="m">
+    <rect x="0" y="80" width="100" height="70" fill="url(#lg)"/>
+    </mask>
+<filter id="MyFilter">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+			<feOffset in="blur" dx="4" dy="4" result="offsetBlur"/>
+
+			<feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" 
+                          specularExponent="10" lighting-color="white"  
+                          result="specOut">
+				<fePointLight x="-5000" y="-10000" z="20000"/>
+			</feSpecularLighting>
+			<feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
+			<feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" 
+                   k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+			
+
+		</filter>
+<g transform="" id="me">
+<g transform="">
+<svg x="20" y="-60" width="60" height="60"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   viewBox="0 0 64 64"
+   id="svg2160">
+  <defs
+     id="defs2162">
+    <linearGradient
+       id="linearGradient3141">
+      <stop
+         style="stop-color:#ffffce;stop-opacity:1"
+         offset="0"
+         id="stop3143" />
+      <stop
+         style="stop-color:#ffcb00;stop-opacity:1"
+         offset="1"
+         id="stop3145" />
+    </linearGradient>
+    <radialGradient
+       cx="21.818182"
+       cy="22.975008"
+       r="32.5"
+       fx="21.818182"
+       fy="22.975008"
+       id="radialGradient3151"
+       xlink:href="#linearGradient3141"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.9972028,0,8.9257047e-2)" />
+  </defs>
+  <g
+     id="layer1">
+    <path
+       d="M 64 31.90909 A 32 31.90909 0 1 1  0,31.90909 A 32 31.90909 0 1 1  64 31.90909 z"
+       style="opacity:0.98999999;fill:url(#radialGradient3151);fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="path2168" />
+    <path
+       d="M 28.545455 21.636364 A 6.909091 8.909091 0 1 1  14.727273,21.636364 A 6.909091 8.909091 0 1 1  28.545455 21.636364 z"
+       transform="translate(-2,0)"
+       style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="path3153" />
+    <path
+       d="M 28.545455 21.636364 A 6.909091 8.909091 0 1 1  14.727273,21.636364 A 6.909091 8.909091 0 1 1  28.545455 21.636364 z"
+       transform="translate(22,-0.3636367)"
+       style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="path3155" />
+    <path
+       d="M -9.8181815 17 A 3.5454545 3.5454545 0 1 1  -16.909091,17 A 3.5454545 3.5454545 0 1 1  -9.8181815 17 z"
+       transform="translate(34.318182,6.0454545)"
+       style="opacity:0.98999999;fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="path3157" />
+    <path
+       d="M -9.8181815 17 A 3.5454545 3.5454545 0 1 1  -16.909091,17 A 3.5454545 3.5454545 0 1 1  -9.8181815 17 z"
+       transform="translate(55.909091,5.3636363)"
+       style="opacity:0.98999999;fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="path3159" />
+    <path
+       d="M 14.259536,40.040786 C 15.390718,47.977686 21.994878,54.095579 30.00708,54.095578 C 37.457213,54.095578 43.721998,48.803911 45.473419,41.683058 C 42.197299,45.827418 36.687895,48.557684 30.428889,48.557684 C 23.380933,48.557685 17.283291,45.087568 14.259536,40.040786 z "
+       style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.1724807;stroke-opacity:1"
+       id="path3161" />
+  </g>
+</svg>
+
+
+<animateTransform attributeName="transform" type="scale" values="1,1;1,0.7;1,1;1,0.8;1,1;1,0.9;1,1;1,1;1,1;1,1" begin="0s" dur="1.5s" repeatCount="indefinite"/>
+</g>
+<animateTransform attributeName="transform" type="translate" values="0,100;0,100;0,80;0,65;0,55;0,50;0,55;0,65;0,80;0,100" begin="0s" dur="1.5s" repeatCount="indefinite"/>
+</g>
+
+<g mask="url(#m)">
+<use xlink:href="#me" transform="translate(0 200) scale(1 -1)"/>
+</g>
+
+</svg>

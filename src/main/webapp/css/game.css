@@ -1,0 +1,105 @@
+body {
+  position:absolute;
+  top:0em;
+  left:40em;
+  -o-transform:  rotate(-45deg) skew(20deg, 20deg);
+}
+body:hover {
+  --o-transform:  rotate(-45deg) skew(30deg, 30deg);
+}
+table {
+  width: 40em;
+  height: 40em;
+  background-color: blue;
+  background-image: -o-linear-gradient(30deg,green 25%,cyan 100%);
+  border-top-color:teal;
+  border-left-color:lime;
+  border-right-color:red;
+  border-bottom-color:black;
+  border-width:5px;
+  border-style:solid;
+  /*
+  -o-transform: translate(20em, 0em) rotate(45deg);
+}
+tr {
+  -o-transform: translate(20em, 20em);
+  -o-transform: skew(-45deg, 45deg);
+  
+}
+tr:nth-child(even){ 
+  background-color: red;
+   opacity: .7;
+}
+td:nth-child(even){ 
+   opacity: .7;
+  */
+}
+td {
+  width: 256px;
+  height: 256px;
+  padding-left: 256px;
+  /*
+  background-color: green;
+  */
+}
+
+img {
+  position:absolute;
+  width: 5em;
+  height: 5em;
+  -o-transform:  skew(-20deg, -20deg)  rotate(45deg);
+}
+  
+#balle {
+  top:0em;
+  left:0em;
+}
+  
+#balle:hover {
+  left:1em;
+}
+  
+#balle:activated {
+  top:1em;
+}
+
+#base {
+  top:60em;
+  left:45em;
+}
+
+#smiley {
+  top:31em;
+  left:31em;
+}
+
+#x1y1 { background-image: url('../images/v=92&x=30&y=19&z=6&s=Gal.jpeg') ;}
+#x2y1 { background-image: url('../images/v=92&x=31&y=19&z=6&s=Gal.jpeg');}
+#x3y1 { background-image: url('../images/v=92&x=32&y=19&z=6&s=Gal.jpeg');}
+#x4y1 { background-image: url('../images/v=92&x=33&y=19&z=6&s=Gal.jpeg');}
+#x5y1 { background-image: url('../images/v=92&x=34&y=19&z=6&s=Gal.jpeg');}
+
+#x1y2 { background-image: url('../images/v=92&x=30&y=20&z=6&s=Gal.jpeg');}
+#x2y2 { background-image: url('../images/v=92&x=31&y=20&z=6&s=Gal.jpeg');}
+#x3y2 { background-image: url('../images/v=92&x=32&y=20&z=6&s=Gal.jpeg');}
+#x4y2 { background-image: url('../images/v=92&x=33&y=20&z=6&s=Gal.jpeg');}
+#x5y2 { background-image: url('../images/v=92&x=34&y=20&z=6&s=Gal.jpeg');}
+                                                     
+#x1y3 { background-image: url('../images/v=92&x=30&y=21&z=6&s=Gal.jpeg');}
+#x2y3 { background-image: url('../images/v=92&x=31&y=21&z=6&s=Gal.jpeg');}
+#x3y3 { background-image: url('../images/v=92&x=32&y=21&z=6&s=Gal.jpeg');}
+#x4y3 { background-image: url('../images/v=92&x=33&y=21&z=6&s=Gal.jpeg');}
+#x5y3 { background-image: url('../images/v=92&x=34&y=21&z=6&s=Gal.jpeg');}
+                                                     
+#x1y4 { background-image: url('../images/v=92&x=30&y=22&z=6&s=Gal.jpeg');}
+#x2y4 { background-image: url('../images/v=92&x=31&y=22&z=6&s=Gal.jpeg');}
+#x3y4 { background-image: url('../images/v=92&x=32&y=22&z=6&s=Gal.jpeg');}
+#x4y4 { background-image: url('../images/v=92&x=33&y=22&z=6&s=Gal.jpeg');}
+#x5y4 { background-image: url('../images/v=92&x=34&y=22&z=6&s=Gal.jpeg');}
+                                                     
+#x1y5 { background-image: url('../images/v=92&x=30&y=23&z=6&s=Gal.jpeg');}
+#x2y5 { background-image: url('../images/v=92&x=31&y=23&z=6&s=Gal.jpeg');}
+#x3y5 { background-image: url('../images/v=92&x=32&y=23&z=6&s=Gal.jpeg');}
+#x4y5 { background-image: url('../images/v=92&x=33&y=23&z=6&s=Gal.jpeg');}
+#x5y5 { background-image: url('../images/v=92&x=34&y=23&z=6&s=Gal.jpeg');}
+
