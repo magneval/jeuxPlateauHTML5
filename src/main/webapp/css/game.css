@@ -4,6 +4,8 @@ body {
   top:0em;
   left:40em;
   transform:  rotate(-45deg) skew(20deg, 20deg);
+  -ms-transform:  rotate(-45deg) skew(20deg, 20deg);
+  -webkit-transform:  rotate(-45deg) skew(20deg, 20deg);
 }
 body:hover {
   transform:  rotate(-45deg) skew(30deg, 30deg);
@@ -48,6 +50,8 @@ img {
   position:absolute;
   width: 5em;
   height: 5em;
+  transform:  skew(-20deg, -20deg)  rotate(45deg);
+  transform:  skew(-20deg, -20deg)  rotate(45deg);
   transform:  skew(-20deg, -20deg)  rotate(45deg);
 }
   
