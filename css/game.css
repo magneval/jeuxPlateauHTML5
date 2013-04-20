@@ -9,6 +9,8 @@ body {
 }
 body:hover {
   transform:  rotate(-45deg) skew(30deg, 30deg);
+  -ms-transform:  rotate(-45deg) skew(30deg, 30deg);
+  -webkit-transform:  rotate(-45deg) skew(30deg, 30deg);
 }
 table,canvas {
   width: 40em;
@@ -51,8 +53,8 @@ img {
   width: 5em;
   height: 5em;
   transform:  skew(-20deg, -20deg)  rotate(45deg);
-  transform:  skew(-20deg, -20deg)  rotate(45deg);
-  transform:  skew(-20deg, -20deg)  rotate(45deg);
+  -ms-transform:  skew(-20deg, -20deg)  rotate(45deg);
+  -webkit-transform:  skew(-20deg, -20deg)  rotate(45deg);
 }
   
 #balle {
