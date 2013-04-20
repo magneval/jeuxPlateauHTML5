@@ -1,0 +1,194 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="js/Dojo/dijit/themes/tundra/tundra.css" type="text/css" />
+    <script src="js/Dojo/dojo/dojo.js.uncompressed.js" data-dojo-config="isDebug: true,parseOnLoad: true"></script>
+    <!-- 
+      <script src="js/Dojo/dojo/dojo.js" data-dojo-config="parseOnLoad:true"></script>
+    -->
+    <script type="text/javascript">
+      dojo.require("dojo.parser");
+      dojo.require("dijit.form.FilteringSelect");
+      dojo.require("dijit.form.Form");
+      dojo.require("dojo.data.ItemFileReadStore");
+      dojo.require("dojo.data.ItemFileWriteStore");
+      dojo.require("dojo.data.ObjectStore");
+      dojo.require("dojox.data.QueryReadStore");
+      dojo.require("dojox.data.JsonRestStore");
+      dojo.require("dojo.store.DataStore");
+      dojo.require("dojo.store.Memory");
+      dojo.require("dijit.form.ComboBox");
+      
+      //var entitiesStore2=new dojo.data.ItemFileReadStore({url:"./entities.json"});
+      data={};
+      var entitiesStore2=new dojo.store.Memory({data:data,idProperty:"id"});
+      var dataStore = dojo.data.ObjectStore({objectStore: entitiesStore2});
+      var objectStore = dojo.store.DataStore({ 
+        store: entitiesStore2 
+      }); 
+      var store1=new dojox.data.QueryReadStore({
+        url:"entities.json",
+        queryOptions: {ignoreCase: true},
+        sort: [{attribute:"name", descending:false}],
+        requestMethod:"get"
+			});
+			dojo.declare("custom.ComboBoxReadStore", dojox.data.QueryReadStore, {
+        fetch:function(request) {
+          request.serverQuery = {q:request.query.name, start:request.start, count:request.count,sort: this.sort};
+          // Call superclasses' fetch
+          return this.inherited("fetch", arguments);
+        }
+      });
+      var store2=new custom.ComboBoxReadStore({
+        url:"entities.json",
+        queryOptions: {ignoreCase: true},
+        sort: {attribute:"name", descending:false},
+        requestMethod:"get"
+			});
+      dojo.ready(function(){  
+        dojo.xhrGet({
+            // The URL to request
+            url: "entities.json",
+            // Handle the response any way you'd like!
+            handleAs: "json",
+            // The method that handles the request's successful result
+            load: function(result) {
+               entitiesStore2.data=result;
+            },
+            error: function() {
+                alert("KO ");
+            }
+        });
+      });
+      //  we're going to use the old provide/require style of
+      //      module definitions.
+      dojo.provide("demo.Example");
+      dojo.require("dojo.store.util.QueryResults");
+      dojo.require("dojo.store.util.SimpleQueryEngine");
+       
+      //  Declare the initial store
+      dojo.declare("demo.Example", null, {
+          data: [],
+          index: {},
+          idProperty: "id",
+          queryEngine: dojo.store.util.SimpleQueryEngine,
+       
+          constructor: function(options){
+              dojo.mixin(this, options || {});
+              this.setData(this.data || []);
+          },
+          query: function(query, options){
+              return dojo.store.util.QueryResults(
+                  (this.queryEngine(query, options))(this.data)
+              );
+          },
+          setData: function(data){
+              this.data = data;
+              //  index our data
+              this.index = {};
+              for(var i = 0, l = data.length; i < l; i++){
+                  var object = data[i];
+                  this.index[object[this.idProperty]] = object;
+              }
+          },
+          //  in our declare from above
+          get: function(id){
+              return this.index[id];
+          },
+          getIdentity: function(object){
+              return object[this.idProperty];
+          },
+          fetch: ({
+                  onComplete:function(items, request){
+                    //alert("fetch "+criteria);
+                    alert("arguments "+request.query.name);
+                    alert("arguments "+request.count);
+                    return data;
+                  },
+                  onError:function(error, request){
+                    alert("The request to the store failed. " +  error);
+                  }
+          })
+      });
+      var exempleStore=new demo.Example({data:data,idProperty:"id"});
+     </script>
+  </head>
+  <body class="tundra">
+    <script type="text/javascript">
+    /*
+      dojo.xhrGet({
+          // The URL to request
+          url: "essaiDojo.txt",
+          // The method that handles the request's successful result
+          // Handle the response any way you'd like!
+          load: function(result) {
+              alert("The message is: " + result);
+          },
+          error: function() {
+              alert("KO ");
+          }
+      });
+      */
+
+    </script>
+    <!-- 
+    <div>
+    <label>countryStore</label>
+    <select dojo-data-id="country" id="country" name="country" data-dojo-props="store: countryStore" data-dojo-type="dijit.form.FilteringSelect"></select>
+    </div>
+    -->
+    <div>
+    <label>entitiesStore2</label>
+    <select dojo-data-id="entity2" id="entity2" name="entity2" data-dojo-props="store: entitiesStore2" data-dojo-type="dijit.form.FilteringSelect"></select>
+    </div>
+    <div>
+    <label>exempleStore</label>
+    <selectid="exempleStore" data-dojo-props="store: exempleStore,count:20" pageSize="10" data-dojo-type="dijit.form.FilteringSelect"></select>
+    </div>
+    <div>
+    <label>exempleStore2</label>
+    <selectid="exempleStore2" data-dojo-props="store: exempleStore,pageSize:20,query:{name:'a'}, queryOptions:{ignoreCase:false}" pageSize="10" data-dojo-type="dijit.form.FilteringSelect"></select>
+    </div>
+    <div>
+    <label>objectStore</label>
+    <select dojo-data-id="objectStore" id="objectStore" name="objectStore" data-dojo-props="store: objectStore" data-dojo-type="dijit.form.FilteringSelect"></select>
+    </div>
+    <div>
+    <label>dataStore</label>
+    <select dojo-data-id="entities" id="entities" name="entities" data-dojo-props="store: dataStore" data-dojo-type="dijit.form.FilteringSelect"></select>
+    </div>
+    <div>
+    <script type="text/javascript">
+    function accesEntitiesStore2(){
+              alert("entitiesStore2 = "+entitiesStore2);
+              alert("data = "+entitiesStore2.data);
+              alert("_itemsByIdentity = "+entitiesStore2._itemsByIdentity);
+              alert("arrayOfAllItems = "+entitiesStore2._arrayOfAllItems);
+              alert("dataStore = "+dataStore);
+              entitiesStore2.data={};
+    }
+    </script>
+    <button onclick="accesEntitiesStore2()">essai</button>
+    </div>
+    <div>
+    <label>legacy</label>
+    <select name="idproduct" id="idproduct_130_217" data-dojo-type="dijit.form.ComboBox" autocomplete="off" data-dojo-props=" value: '', placeHolder: 'Select a idproduct', onChange: function(){setPrice(this,'_130_217');setLib(this,'_130_217')}">
+      <option value="215" price="" lib="MARIE MORIN 19 BLC P/2 3432">9022901</option>
+      <option value="216" price="1" lib="Test">Test</option>
+      <option selected="selected" value="217" price="100" lib="test2">test2</option>
+    </select>
+    </div>
+    <div>
+    <label>QueryReadStore</label>
+		<div dojoType="dijit.form.FilteringSelect" id="fs1" store="store1" pageSize="10" autoComplete="false" sort="toto" queryOptions="{}"></div>
+    </div>
+    <div>
+    <label>QueryReadStore</label>
+		<div dojoType="dijit.form.FilteringSelect" id="fs2" store="store2" query="{name:'a'}" queryOptions="{ignoreCase:false}" pageSize="10" autoComplete="false" sort="toto" queryOptions="{}"></div>
+    </div>
+  </body>
+</html>
+

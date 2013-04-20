@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="js/Dojo/dijit/themes/tundra/tundra.css" type="text/css" />
+    <script src="js/Dojo/dojo/dojo.js.uncompressed.js" data-dojo-config="isDebug: true,parseOnLoad: true"></script>
+    <script type="text/javascript">
+      dojo.require("dojo.parser");
+      dojo.require("dijit.form.FilteringSelect");
+      dojo.require("dojox.data.QueryReadStore");
+      //data={};
+      dojo.declare("com.saintGobain.ComboBoxReadStore", dojox.data.QueryReadStore, {
+        fetch:function(request) {
+          //request.serverQuery = {q:request.query.name, start:request.start, count:request.count,sort: this.sort,clientId:this.clientId};
+          return this.inherited("fetch", arguments);
+        }
+      });
+      var productStores=new com.saintGobain.ComboBoxReadStore({
+        url:"byCriteria.js",
+        queryOptions: {ignoreCase: true},
+        requestMethod:"get",
+        clientId:1,
+			});
+
+     </script>
+  </head>
+  <body class="tundra">
+    <select id="clientId" autocomplete="off" onChange='function(){alert("clientId = "+clientId.value;}'>
+      <option value="215" price="" lib="MARIE MORIN 19 BLC P/2 3432">9022901</option>
+      <option value="216" price="1" lib="Test">Test</option>
+      <option selected="selected" value="217" price="100" lib="test2">test2</option>
+    </select>
+    <div>
+    <label>QueryReadStore</label>
+		<div dojoType="dijit.form.FilteringSelect" id="fs" searchAttr='reference' store="productStores" autoComplete="false" pageSize="10" fetchProperties='{sort:"toto",clientId:clientId.value}' ></div>
+    </div>
+    <div>
+    <label>QueryReadStore</label>
+		<div dojoType="dijit.form.FilteringSelect" id="fs2" searchAttr='libelle' store="productStores" autoComplete="false" pageSize="10" fetchProperties='{sort:"toto",clientId:clientId.value}' ></div>
+    </div>
+  </body>
+</html>
